@@ -1618,11 +1618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleInteractable
   interactionPrompt: Examine clock
   useOnlyOnce: 0
-  narratorLine:
-    subtitle: 
-    audioClip: {fileID: 0}
-    charactersPerSecond: 35
-    holdAfterLine: 1
+  narratorSequence: []
   focusVisual: {fileID: 0}
   onInteract:
     m_PersistentCalls:
@@ -3481,11 +3477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleInteractable
   interactionPrompt: Wear smart casual
   useOnlyOnce: 1
-  narratorLine:
-    subtitle: 
-    audioClip: {fileID: 0}
-    charactersPerSecond: 35
-    holdAfterLine: 1
+  narratorSequence: []
   focusVisual: {fileID: 0}
   onInteract:
     m_PersistentCalls:
@@ -3707,11 +3699,18 @@ MonoBehaviour:
   playOnSceneStart: 1
   playOnlyOnce: 1
   lines:
-  - subtitle: Good morning. The BuildingBlocks Game Jam begins at nine, which gives
-      us plenty of time.
-    audioClip: {fileID: 0}
+  - subtitle: Wake up NOW! You've overslept.
+    audioClip: {fileID: 8300000, guid: 54f1b7ec2fed6b4448199ece7fe976c1, type: 3}
     charactersPerSecond: 35
-    holdAfterLine: 3
+    holdAfterLine: 0.5
+  - subtitle: You dumbass!
+    audioClip: {fileID: 8300000, guid: 7d44e580e885d0b4e81098dc6c396218, type: 3}
+    charactersPerSecond: 35
+    holdAfterLine: 1
+  - subtitle: "Please choose an outfit quickly, we\u2019re running late."
+    audioClip: {fileID: 8300000, guid: dcd7affa69fad2e48a06c430ef8bb013, type: 3}
+    charactersPerSecond: 35
+    holdAfterLine: 1
 --- !u!4 &858080629
 Transform:
   m_ObjectHideFlags: 0
@@ -4634,13 +4633,15 @@ MonoBehaviour:
   delayBeforeFire: 2
   nextSceneName: Foyer
   toasterFirstLine:
-    subtitle: 
-    audioClip: {fileID: 0}
+    subtitle: "Ahh\u2026 there's a toaster.. But no bread? Have you checked your
+      pillow?"
+    audioClip: {fileID: 8300000, guid: 3eac89db0c472864482f141ca02d2bec, type: 3}
     charactersPerSecond: 35
     holdAfterLine: 1
   pillowTooEarlyLine:
-    subtitle: 
-    audioClip: {fileID: 0}
+    subtitle: "You\u2019ve spent enough time with this pillow, how about you leave
+      it alone for now?"
+    audioClip: {fileID: 8300000, guid: 514120296b969ba409d82446154db505, type: 3}
     charactersPerSecond: 35
     holdAfterLine: 1
   pillowMovedLine:
@@ -4658,11 +4659,25 @@ MonoBehaviour:
     audioClip: {fileID: 0}
     charactersPerSecond: 35
     holdAfterLine: 1
-  toasterCookingLines: []
-  toasterPanicLines: []
+  toasterCookingLines:
+  - subtitle: "By the way, I havent introduced myself\u2026 I'm the voice in your
+      head\u2026 a narrator, I suppose."
+    audioClip: {fileID: 8300000, guid: e0f5ad558217e914f9d6c51bc84f092e, type: 3}
+    charactersPerSecond: 35
+    holdAfterLine: 1
+  - subtitle: "And me? I'm the voice in his head\u2026 which makes me the real narrator."
+    audioClip: {fileID: 8300000, guid: f57f19f029f88544ba55b0fb8cf47247, type: 3}
+    charactersPerSecond: 0
+    holdAfterLine: 1
+  toasterPanicLines:
+  - subtitle: "Not when we're already late\u2026 just leave, quickly! The breakfast
+      can wait.\r\n"
+    audioClip: {fileID: 8300000, guid: d8fcd9c9a29d7274fa5cbad1c27e6c56, type: 3}
+    charactersPerSecond: 0
+    holdAfterLine: 1
   frontDoorLockedLine:
-    subtitle: 
-    audioClip: {fileID: 0}
+    subtitle: "Let\u2019s eat breakfast first before we depart."
+    audioClip: {fileID: 8300000, guid: 4ea62925ec55a3d4c98040eacfefc8e5, type: 3}
     charactersPerSecond: 35
     holdAfterLine: 1
 --- !u!4 &1266731022
@@ -9920,11 +9935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleInteractable
   interactionPrompt: Wear boxer only
   useOnlyOnce: 1
-  narratorLine:
-    subtitle: 
-    audioClip: {fileID: 0}
-    charactersPerSecond: 35
-    holdAfterLine: 1
+  narratorSequence: []
   focusVisual: {fileID: 0}
   onInteract:
     m_PersistentCalls:
@@ -10072,31 +10083,33 @@ MonoBehaviour:
   doorPivot: {fileID: 1361963715}
   doorOpenAngle: 140
   doorOpenDuration: 2
-  sensibleOutfitObject: {fileID: 0}
-  formalOutfitObject: {fileID: 0}
-  ridiculousOutfitObject: {fileID: 0}
+  sensibleOutfitObject: {fileID: 919132148717292820}
+  formalOutfitObject: {fileID: 919132147801814498}
+  ridiculousOutfitObject: {fileID: 919132148852294358}
   outfitColliders:
   - {fileID: 741008265}
   - {fileID: 1611022360}
   - {fileID: 2073218737}
   sensibleOutfitLine:
-    subtitle: nice
-    audioClip: {fileID: 0}
+    subtitle: "Good choice. Now you look refined and elegant\u2026 and smart and
+      casual of course."
+    audioClip: {fileID: 8300000, guid: 50b306ab285b158459f8d27349820d18, type: 3}
     charactersPerSecond: 35
     holdAfterLine: 1
   formalOutfitLine:
-    subtitle: bro
-    audioClip: {fileID: 0}
+    subtitle: "There's no way\u2026 whatever floats your boat I suppose\u2026"
+    audioClip: {fileID: 8300000, guid: 451659b687c01e34c976654440dab2bb, type: 3}
     charactersPerSecond: 35
     holdAfterLine: 1
   ridiculousOutfitLine:
-    subtitle: why
-    audioClip: {fileID: 0}
+    subtitle: EXCELLENT choice! I'm very happy with your selection!
+    audioClip: {fileID: 8300000, guid: 7b44cd9a4b967064a9875e9640c6b831, type: 3}
     charactersPerSecond: 35
     holdAfterLine: 1
   goToKitchenLine:
-    subtitle: 
-    audioClip: {fileID: 0}
+    subtitle: "Please make your way to the kitchen to get some breakfast\u2026 quickly
+      now."
+    audioClip: {fileID: 8300000, guid: f453dcf44f410aa40945c07d230dc5f7, type: 3}
     charactersPerSecond: 35
     holdAfterLine: 1
 --- !u!4 &1625411915
@@ -10509,7 +10522,6 @@ Transform:
   - {fileID: 543450652427569042}
   - {fileID: 543450653540250436}
   - {fileID: 543450652972406702}
-  - {fileID: 543450652433121016}
   - {fileID: 543450651740221272}
   - {fileID: 543450652836878444}
   m_Father: {fileID: 0}
@@ -10705,11 +10717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleInteractable
   interactionPrompt: Wear banana costume
   useOnlyOnce: 1
-  narratorLine:
-    subtitle: 
-    audioClip: {fileID: 0}
-    charactersPerSecond: 35
-    holdAfterLine: 1
+  narratorSequence: []
   focusVisual: {fileID: 0}
   onInteract:
     m_PersistentCalls:
@@ -11530,13 +11538,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148173808706}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -3.2344, y: 0.30062, z: 4.3318}
-  m_LocalScale: {x: 0.012715348, y: 0.009778739, z: 0.012715348}
+  m_LocalRotation: {x: 0.50008726, y: -0.4999127, z: -0.50008726, w: 0.4999127}
+  m_LocalPosition: {x: -0.013334585, y: 0.0050796997, z: -0.004899459}
+  m_LocalScale: {x: 0.0006208495, y: 0.00047746423, z: 0.00062084914}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1151388027431931808}
-  m_Father: {fileID: 1884795533}
+  m_Father: {fileID: 543450652836878444}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &543450652627137371
 Transform:
@@ -11579,7 +11587,8 @@ Transform:
   m_LocalPosition: {x: -3.5075, y: 0.401, z: 4.2278}
   m_LocalScale: {x: 20.480574, y: 20.48057, z: 20.48057}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 543450652433121016}
   m_Father: {fileID: 1884795533}
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 180}
 --- !u!4 &543450652972406702
@@ -13884,11 +13893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimpleInteractable
   interactionPrompt: Sleep for 5 more minutes
   useOnlyOnce: 0
-  narratorLine:
-    subtitle: 
-    audioClip: {fileID: 0}
-    charactersPerSecond: 35
-    holdAfterLine: 1
+  narratorSequence: []
   focusVisual: {fileID: 0}
   onInteract:
     m_PersistentCalls:
@@ -20492,6 +20497,7 @@ GameObject:
   - component: {fileID: 499490858155806110}
   - component: {fileID: 5877740543276519155}
   - component: {fileID: 6352218876486871829}
+  - component: {fileID: 7477038336009947323}
   m_Layer: 0
   m_Name: pCube9
   m_TagString: Untagged
@@ -20499,6 +20505,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &7477038336009947323
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477038336009947322}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7857590630482128698, guid: 2413223a160c0ed4ba36a5e185a6379b, type: 3}
 --- !u!1 &7496462558241282476
 GameObject:
   m_ObjectHideFlags: 0

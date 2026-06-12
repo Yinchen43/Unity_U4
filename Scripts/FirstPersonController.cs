@@ -18,19 +18,28 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float maximumLookAngle = 85f;
 
     private CharacterController characterController;
+
     private float verticalVelocity;
     private float cameraPitch;
-    private bool controlsEnabled = true;
 
-    public bool ControlsEnabled => controlsEnabled;
+    private bool movementEnabled = true;
+    private bool lookEnabled = true;
+
+    public bool ControlsEnabled =>
+        movementEnabled && lookEnabled;
+
+    public bool MovementEnabled => movementEnabled;
+    public bool LookEnabled => lookEnabled;
 
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
+        characterController =
+            GetComponent<CharacterController>();
 
         if (playerCamera == null)
         {
-            playerCamera = GetComponentInChildren<Camera>();
+            playerCamera =
+                GetComponentInChildren<Camera>();
         }
     }
 
@@ -41,30 +50,40 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
-        if (!controlsEnabled)
+        if (lookEnabled)
         {
-            return;
+            HandleCamera();
         }
 
-        HandleCamera();
-        HandleMovement();
+        if (movementEnabled)
+        {
+            HandleMovement();
+        }
     }
 
     private void HandleCamera()
     {
-        if (Mouse.current == null)
+        if (Mouse.current == null ||
+            playerCamera == null)
         {
             return;
         }
 
-        Vector2 mouseDelta = Mouse.current.delta.ReadValue();
+        Vector2 mouseDelta =
+            Mouse.current.delta.ReadValue();
 
-        float yaw = mouseDelta.x * mouseSensitivity;
-        float pitchChange = mouseDelta.y * mouseSensitivity;
+        float yaw =
+            mouseDelta.x * mouseSensitivity;
 
-        transform.Rotate(Vector3.up * yaw);
+        float pitchChange =
+            mouseDelta.y * mouseSensitivity;
+
+        transform.Rotate(
+            Vector3.up * yaw
+        );
 
         cameraPitch -= pitchChange;
+
         cameraPitch = Mathf.Clamp(
             cameraPitch,
             -maximumLookAngle,
@@ -72,7 +91,11 @@ public class FirstPersonController : MonoBehaviour
         );
 
         playerCamera.transform.localRotation =
-            Quaternion.Euler(cameraPitch, 0f, 0f);
+            Quaternion.Euler(
+                cameraPitch,
+                0f,
+                0f
+            );
     }
 
     private void HandleMovement()
@@ -104,10 +127,18 @@ public class FirstPersonController : MonoBehaviour
             input.x -= 1f;
         }
 
-        input = Vector2.ClampMagnitude(input, 1f);
+        input = Vector2.ClampMagnitude(
+            input,
+            1f
+        );
+
+        bool isRunning =
+            Keyboard.current
+                .leftShiftKey
+                .isPressed;
 
         float currentSpeed =
-            Keyboard.current.leftShiftKey.isPressed
+            isRunning
                 ? runSpeed
                 : walkSpeed;
 
@@ -116,7 +147,9 @@ public class FirstPersonController : MonoBehaviour
             transform.forward * input.y;
 
         characterController.Move(
-            horizontalMovement * currentSpeed * Time.deltaTime
+            horizontalMovement *
+            currentSpeed *
+            Time.deltaTime
         );
 
         if (characterController.isGrounded &&
@@ -126,22 +159,33 @@ public class FirstPersonController : MonoBehaviour
         }
 
         if (characterController.isGrounded &&
-            Keyboard.current.spaceKey.wasPressedThisFrame)
+            Keyboard.current
+                .spaceKey
+                .wasPressedThisFrame)
         {
             verticalVelocity =
-                Mathf.Sqrt(jumpHeight * -2f * gravity);
+                Mathf.Sqrt(
+                    jumpHeight *
+                    -2f *
+                    gravity
+                );
         }
 
-        verticalVelocity += gravity * Time.deltaTime;
+        verticalVelocity +=
+            gravity * Time.deltaTime;
 
         characterController.Move(
-            Vector3.up * verticalVelocity * Time.deltaTime
+            Vector3.up *
+            verticalVelocity *
+            Time.deltaTime
         );
     }
 
-    public void SetControlsEnabled(bool enabled)
+    public void SetControlsEnabled(
+        bool enabled)
     {
-        controlsEnabled = enabled;
+        movementEnabled = enabled;
+        lookEnabled = enabled;
 
         if (!enabled)
         {
@@ -149,40 +193,64 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    public void SetMovementEnabled(
+        bool enabled)
+    {
+        movementEnabled = enabled;
+
+        if (!enabled)
+        {
+            verticalVelocity = 0f;
+        }
+    }
+
+    public void SetLookEnabled(
+        bool enabled)
+    {
+        lookEnabled = enabled;
+    }
+
     public void LockCursor()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState =
+            CursorLockMode.Locked;
+
         Cursor.visible = false;
     }
 
     public void UnlockCursor()
     {
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState =
+            CursorLockMode.None;
+
         Cursor.visible = true;
     }
-    public void TeleportTo(Transform target)
-{
-    if (target == null)
+
+    public void TeleportTo(
+        Transform target)
     {
-        return;
+        if (target == null)
+        {
+            return;
+        }
+
+        characterController.enabled = false;
+
+        transform.SetPositionAndRotation(
+            target.position,
+            target.rotation
+        );
+
+        cameraPitch = 0f;
+        verticalVelocity = 0f;
+
+        if (playerCamera != null)
+        {
+            playerCamera.transform
+                .localRotation =
+                Quaternion.identity;
+        }
+
+        characterController.enabled = true;
     }
-
-    characterController.enabled = false;
-
-    transform.SetPositionAndRotation(
-        target.position,
-        target.rotation
-    );
-
-    cameraPitch = 0f;
-    verticalVelocity = 0f;
-
-    if (playerCamera != null)
-    {
-        playerCamera.transform.localRotation =
-            Quaternion.identity;
-    }
-
-    characterController.enabled = true;
-}
 }
